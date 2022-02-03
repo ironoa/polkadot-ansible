@@ -1,11 +1,6 @@
 ﻿# polkadot-ansible
 Ansible scripts to deploy a Docker based Polkadot/Kusama validator node. No need for compiling and complicated dependency management :)
 
-## Nominate or Tip Me!
-
-* Polkadot: [12Dw4SzhsxX3fpDiLUYXm9oGbfxcbg1Peq67gc5jkkEo1TKr](https://polkadot.subscan.io/waiting/12Dw4SzhsxX3fpDiLUYXm9oGbfxcbg1Peq67gc5jkkEo1TKr) (🍁 HIGH/STAKE 🥩/HEL1)
-* Kusama: [DbRgw96nMQcFEFZWTLd6LSPNdh8u3NBuUDfAhDmB6UU8cJC](https://thousand-validators.kusama.network/#/leaderboard/DbRgw96nMQcFEFZWTLd6LSPNdh8u3NBuUDfAhDmB6UU8cJC) (🍁 HIGH/STAKE 🥩/HEL1)
-
 ## Getting started
 
 Prerequisits:
