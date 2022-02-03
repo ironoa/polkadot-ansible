@@ -1,8 +1,10 @@
 hosts.ini
 
-host_vars/hel1*
+host_vars/*
+!host_vars/my_node*
 
 roles/polkadot-claimer/files/wallet.json-polkadot
 roles/polkadot-claimer/files/wallet.json-kusama
 roles/polkadot-claimer/files/password-polkadot
 roles/polkadot-claimer/files/password-kusama
+
