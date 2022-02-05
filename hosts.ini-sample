@@ -14,3 +14,8 @@ ansible_python_interpreter=/usr/bin/python3
 # Polkadot specific settings for all instances
 telemetry_url='wss://telemetry-backend.w3f.community/submit/' # For 1KV Program
 logging_filter='sync=warn,afg=warn,babe=warn'
+# Nginx
+nginx_user='nginx_user'
+nginx_password='nginx_password'
+# Node exporter
+node_exporter_enabled='true'

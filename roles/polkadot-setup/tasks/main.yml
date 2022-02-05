@@ -8,3 +8,16 @@
 
 - name: motd
   import_tasks: motd.yml
+
+- name: proxy setup
+  import_tasks: proxy.yml  
+
+- name: user
+  import_tasks: user.yml  
+
+- name: node exporter
+  import_role:
+    name: node-exporter  
+
+- name: firewall
+  import_tasks: firewall.yml      

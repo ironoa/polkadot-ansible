@@ -9,8 +9,8 @@
   file:
     path: '{{ db_path }}'
     state: directory
-    owner: 1000
-    group: 1000
+    owner: '1000'
+    group: '1000'
 
 - name: Spin up docker
   docker_compose:
@@ -44,7 +44,6 @@
                 - "{{ db_path }}:/polkadot"
                 ports:
                 - "{{ rpc_listen }}:9933"
-                - "{{ ws_listen }}:9944"
                 - "{{ metrics_listen }}:9615"
                 - "{{ p2p_listen }}:30333"
                 hostname: '{{ chain }}'

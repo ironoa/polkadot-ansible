@@ -1,0 +1,19 @@
+---
+- name: check if keys already exist
+  shell: |
+    set -o pipefail
+    if [ -d {{ db_path }}/.local/share/polkadot/chains/{{ polkadot_network_id }}/keystore ]; then
+      ls {{ db_path }}/.local/share/polkadot/chains/{{ polkadot_network_id }}/keystore -1U | wc -l
+    else
+      mkdir -p {{ db_path }}/.local/share/polkadot/chains/{{ polkadot_network_id }}/
+      chown -R polkadot:polkadot {{ db_path }}/.local/share/polkadot
+      echo 0
+    fi
+  args:
+    executable: /bin/bash
+  register: keystore_files
+  changed_when: False
+
+- name: initialize server keys
+  import_tasks: rotate.yml  
+  when: keystore_files.stdout == "0" #comment this line to force a rotation anyway

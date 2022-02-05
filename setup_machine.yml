@@ -1,6 +1,6 @@
 ---
 - name: setup
-  hosts: all
+  hosts: polkadot # to prevent concurrency
   become: yes
   roles:
   - polkadot-setup
