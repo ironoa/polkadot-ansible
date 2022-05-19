@@ -17,4 +17,8 @@
 - name: save rotateKeys output
   copy:
     content: "{{ rotate_keys.json }}"
-    dest: '{{db_path}}/{{chain}}_rotate_keys.log'
+    dest: '{{data_path}}/{{chain}}_rotate_keys.log'
+
+
+#a check can be made by triggering:
+#curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "author_hasSessionKeys", "params":["key"]}' http://localhost:9933     

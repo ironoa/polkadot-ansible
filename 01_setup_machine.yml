@@ -1,0 +1,6 @@
+---
+- name: setup
+  hosts: kusama # instead all to prevent concurrency
+  become: yes
+  roles:
+  - polkadot-setup

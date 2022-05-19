@@ -22,3 +22,9 @@
 - name: Install Docker Module for Python
   pip:
     name: docker
+
+- name: Install Docker Driver Plugin
+  shell: |
+    if ! docker plugin ls | grep loki ; then
+      docker plugin install grafana/loki-docker-driver:latest --alias loki --grant-all-permissions
+    fi

@@ -1,5 +1,8 @@
 ---
 # tasks file for polkadot-validator
+- name: apt
+  import_tasks: apt.yml
+
 - name: journald config
   import_tasks: journald.yml
 
@@ -21,3 +24,6 @@
 
 - name: firewall
   import_tasks: firewall.yml      
+
+- name: vpn
+  import_tasks: vpn.yml  

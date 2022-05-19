@@ -30,7 +30,7 @@
   command: ufw allow 9626/tcp
   when:
     - node_exporter_enabled|default(false)|bool
-    - not ufw_status_result.stdout is search("9616/tcp.*ALLOW IN.*Anywhere")
+    - not ufw_status_result.stdout is search("9626/tcp.*ALLOW IN.*Anywhere")
 
 - name: enable firewall
   shell: |

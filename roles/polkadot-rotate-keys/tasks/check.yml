@@ -2,11 +2,11 @@
 - name: check if keys already exist
   shell: |
     set -o pipefail
-    if [ -d {{ db_path }}/.local/share/polkadot/chains/{{ polkadot_network_id }}/keystore ]; then
-      ls {{ db_path }}/.local/share/polkadot/chains/{{ polkadot_network_id }}/keystore -1U | wc -l
+    if [ -d {{ data_path }}/.local/share/polkadot/chains/{{ polkadot_network_id }}/keystore ]; then
+      ls {{ data_path }}/.local/share/polkadot/chains/{{ polkadot_network_id }}/keystore -1U | wc -l
     else
-      mkdir -p {{ db_path }}/.local/share/polkadot/chains/{{ polkadot_network_id }}/
-      chown -R polkadot:polkadot {{ db_path }}/.local/share/polkadot
+      mkdir -p {{ data_path }}/.local/share/polkadot/chains/{{ polkadot_network_id }}/
+      chown -R 1000:1000 {{ data_path }}/.local/share/polkadot
       echo 0
     fi
   args:
