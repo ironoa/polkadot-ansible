@@ -1,0 +1,6 @@
+---
+- name: Stop running validator
+  docker_container:
+    name: '{{ chain }}-{{ node_name }}'
+    state: stopped
+  ignore_errors: yes

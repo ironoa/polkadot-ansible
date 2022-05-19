@@ -8,6 +8,7 @@ Prerequisits:
 *  VPS or dedicated server meeting the Polkadot/Kusama requirements (you might want to have a beefier machine as we're going to run two validators on one machine)
 *  ansible (2.11.6+)
 *  ansible-playbook (2.11.6+)
+*  new user with guid and uid 1000 free to be created on the host system (currently using hardcoded docker bind mount instead volumes)
 
 First copy the `hosts.ini-sample` to `hosts.ini` then:
 
@@ -16,8 +17,6 @@ First copy the `hosts.ini-sample` to `hosts.ini` then:
 1.  Update the values in the `host_vars/my_node_*.yml` files, you always want to:
   1.  Update the `node_name` this is the node name your validator will show up with in the Telemetry dashboards
   1.  Update the `polkadot_db_snapshot_url` and `polkadot_db_snapshot_checksum` with the latest values from https://polkashots.io/
-  1.  Update your `stash_addr` with your stash address. (If you don't know what a stash address is you probably don't want to run your own validator!)
-1.  Place an exported `wallet.json` and `password` file in `roles/polkadot-claimer/files` adding a -kusama or -polkadot suffix to the file name.
 
 ## Deployment
 
@@ -34,12 +33,9 @@ This will execute the following roles:
   *  Setup Journald
   *  Setup motd (message of the day)
 * polkadot-restore-db
-  *  Downloads the in the host_vars defined snapshot and unpacks it to the future `db_path`
+  *  Downloads the in the host_vars defined snapshot and unpacks it to the future `data_path`
 * polkadot-validator
   *  Starts the polkadot/kusama validators as docker containers
-* polkadot-claimer
-  *  Copies the wallet.json & password files to the server
-  *  Setups a cronjob which executes a docker container that claims the staking rewards
 * polkadot-rotate-keys
   *  Rotates the session keys so you can use for the `SetSessionKeys` extrinsic
 

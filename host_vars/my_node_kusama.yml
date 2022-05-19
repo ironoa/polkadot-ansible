@@ -9,7 +9,8 @@ p2p_listen: 30334
 rpc_listen: 127.0.0.1:9934
 ws_listen: 127.0.0.1:9945
 metrics_listen: 127.0.0.1:9616
-db_path: '~/{{chain}}'
-claimer_path: '~/{{chain}}-claimer'
-api_endpoint: 'wss://kusama-rpc.polkadot.io/'
-stash_addr: 'YOUR-STASH-ADDR-GOES-HERE'
+polkadot_user: 'polkadot'
+user_path: '/home/{{polkadot_user}}'
+data_path: '{{user_path}}/{{chain}}-{{node_name}}'
+loki_auth: 'username:pass'
+loki_endpoint: 'https://{{loki_auth}}@loki.domain/loki/api/v1/push'

@@ -1,0 +1,16 @@
+---
+
+- name: add polkadot user
+  user:
+    name: '{{ polkadot_user }}'
+    shell: /bin/bash
+    uid: '1000'
+    groups: 
+      - docker
+    #append: no
+
+- name: create polkadot group
+  group:
+    name: '{{ polkadot_user }}'
+    state: present
+    gid: '1000'

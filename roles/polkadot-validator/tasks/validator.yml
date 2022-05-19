@@ -1,27 +1,28 @@
 ---
 - name: Clean running validator
   docker_container:
-    name: '{{ chain }}'
+    name: '{{ chain }}-{{ node_name }}'
     state: absent
   ignore_errors: yes
 
-- name: Setup db path
+- name: Setup data path
   file:
-    path: '{{ db_path }}'
+    path: '{{ data_path }}'
     state: directory
-    owner: 1000
-    group: 1000
+    owner: '1000'
+    group: '1000'
 
 - name: Spin up docker
   docker_compose:
-    project_name: '{{ chain }}'
+    project_name: '{{ chain }}-{{ node_name }}'
     pull: yes
     definition:
         version: '3'
         services:
             polkadot:
-                image: parity/polkadot
-                container_name: '{{ chain }}'
+                image: '{{ image }}:{{ tag }}'
+                user: '1000:1000'
+                container_name: '{{ chain }}-{{ node_name }}'
                 command:
                     [
                         "--name={{ node_name }}",
@@ -31,24 +32,29 @@
                         "--rpc-methods=Unsafe",
                         "--rpc-external",
                         "--rpc-cors=all",
-                        "--listen-addr=/ip4/0.0.0.0/tcp/{{ p2p_listen }}",
+                        "--listen-addr=/ip4/0.0.0.0/tcp/30333",
                         "--public-addr=/ip4/{{ ansible_default_ipv4.address }}/tcp/{{ p2p_listen }}",
                         "--prometheus-external",
                         "--no-mdns",
                         "--unsafe-pruning",
                         "--pruning=1000",
-                        "--telemetry-url=wss://telemetry.polkadot.io/submit/ 1",
                         "--telemetry-url={{ telemetry_url }} 1"
                     ]
                 volumes:
-                - "{{ db_path }}:/polkadot"
+                - "{{ data_path }}:/polkadot"
                 ports:
                 - "{{ rpc_listen }}:9933"
-                - "{{ ws_listen }}:9944"
                 - "{{ metrics_listen }}:9615"
                 - "{{ p2p_listen }}:30333"
-                hostname: '{{ chain }}'
+                hostname: '{{ chain }}-{{ node_name }}'
                 restart: unless-stopped
+                # logging:
+                #   driver: loki
+                #   options:
+                #     loki-external-labels: app=substrate-node
+                #     loki-url: '{{ loki_endpoint }}'
+                #     loki-retries: "5"
+                #     loki-batch-size: "400"
   register: output
 
 - ansible.builtin.debug:
@@ -56,4 +62,4 @@
 
 - ansible.builtin.assert:
     that:
-        - "output.services.polkadot.{{ chain }}.state.running"
+        - "output.services.polkadot['{{ chain }}-{{ node_name }}'].state.running"
