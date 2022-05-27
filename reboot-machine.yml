@@ -1,0 +1,6 @@
+---
+- name: Reboot machines
+  hosts: kusama # instead all to prevent concurrency
+  become: yes
+  roles:
+    - reboot-machine

@@ -1,7 +1,7 @@
 ---
 
 - name: Setup Nodes
-  hosts: kusama
+  hosts: all
   become: yes
   roles:
     - polkadot-validator

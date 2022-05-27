@@ -16,8 +16,13 @@ image='parity/polkadot'
 tag='v0.9.22'
 telemetry_url='wss://telemetry-backend.w3f.community/submit/' # For 1KV Program
 logging_filter='sync=warn,afg=warn,babe=warn'
+user_path='/home/{{polkadot_user}}'
+data_path='{{user_path}}/{{chain}}-{{node_name}}'
 # Nginx
 nginx_user='nginx_user'
 nginx_password='nginx_password'
 # Node exporter
 node_exporter_enabled='true'
+# Loki
+loki_auth='user:pass'
+loki_endpoint='https://{{loki_auth}}@loki.ironoa.com/loki/api/v1/push'
