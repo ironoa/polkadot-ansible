@@ -1,0 +1,6 @@
+---
+- name: Setup watchtower
+  hosts: kusama
+  become: yes
+  roles:
+    - watchtower

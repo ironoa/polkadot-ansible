@@ -13,7 +13,7 @@ ansible_user=root
 ansible_python_interpreter=/usr/bin/python3
 # Polkadot specific settings for all instances
 image='parity/polkadot'
-tag='v0.9.22'
+tag='v0.9.40'
 telemetry_url='wss://telemetry-backend.w3f.community/submit/' # For 1KV Program
 logging_filter='sync=warn,afg=warn,babe=warn'
 user_path='/home/{{polkadot_user}}'

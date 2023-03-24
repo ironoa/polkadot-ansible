@@ -3,7 +3,7 @@
   docker_container:
     name: '{{ chain }}-{{ node_name }}'
     state: absent
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: Setup data path
   file:
@@ -20,12 +20,12 @@
         version: '3'
         services:
             polkadot:
-                image: '{{ image }}:{{ tag }}'
+                image: '{{ image }}:{{ tag }}'   
                 user: '1000:1000'
                 container_name: '{{ chain }}-{{ node_name }}'
                 command:
                     [
-                        "--name={{ node_name }}",
+                        "--name={{ display_name }}",
                         "-l{{ logging_filter }}",
                         "--chain={{ chain }}",
                         "--validator",
@@ -36,7 +36,6 @@
                         "--public-addr=/ip4/{{ ansible_default_ipv4.address }}/tcp/{{ p2p_listen }}",
                         "--prometheus-external",
                         "--no-mdns",
-                        "--unsafe-pruning",
                         "--pruning=1000",
                         "--telemetry-url={{ telemetry_url }} 1"
                     ]
