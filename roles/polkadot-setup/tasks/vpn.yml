@@ -14,5 +14,12 @@
     state: restarted
     daemon_reload: yes
     enabled: yes
-  changed_when: false    
+  changed_when: false
+
+# - name: stop service
+#   systemd:
+#     name: wg-quick@{{ vpn }}
+#     state: stopped
+#     enabled: no
+#   changed_when: false      
 

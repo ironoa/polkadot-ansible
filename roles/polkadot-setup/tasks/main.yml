@@ -25,5 +25,5 @@
 - name: firewall
   import_tasks: firewall.yml      
 
-- name: vpn
-  import_tasks: vpn.yml  
+# - name: vpn
+#   import_tasks: vpn.yml  
