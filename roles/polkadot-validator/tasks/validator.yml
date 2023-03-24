@@ -20,7 +20,6 @@
         version: '3'
         services:
             polkadot:
-                #image: 'ironoa/polkadot:stable'
                 image: '{{ image }}:{{ tag }}'   
                 user: '1000:1000'
                 container_name: '{{ chain }}-{{ node_name }}'
