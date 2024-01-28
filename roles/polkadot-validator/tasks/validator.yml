@@ -28,6 +28,7 @@
                         "--name={{ display_name }}",
                         "-l{{ logging_filter }}",
                         "--chain={{ chain }}",
+                        # "--base-path=/data",
                         "--validator",
                         "--rpc-methods=Unsafe",
                         "--rpc-external",
@@ -40,9 +41,10 @@
                         "--telemetry-url={{ telemetry_url }} 1"
                     ]
                 volumes:
-                - "{{ data_path }}:/polkadot"
+                - "{{ data_path }}:/parity"
+                # - "{{ data_path }}:/data"
                 ports:
-                - "{{ rpc_listen }}:9933"
+                - "{{ ws_listen }}:9944"
                 - "{{ metrics_listen }}:9615"
                 - "{{ p2p_listen }}:30333"
                 hostname: '{{ chain }}-{{ node_name }}'

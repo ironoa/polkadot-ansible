@@ -6,7 +6,6 @@ polkadot_network_id: ksmcc3
 polkadot_db_snapshot_url: 'https://ksm-rocksdb.polkashots.io/snapshot'
 p2p_listen: 30334
 # Keep these bound to 127.0.0.1 you otherwise expose the ports to the public!
-rpc_listen: 127.0.0.1:9934
 ws_listen: 127.0.0.1:9945
 metrics_listen: 127.0.0.1:9616
 polkadot_user: 'polkadot'

@@ -1,9 +1,9 @@
 ---
 
-#curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "author_rotateKeys", "params":[]}' http://localhost:9933  
+#curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "author_rotateKeys", "params":[]}' http://localhost:9944 
 - name: rotate server keys
   uri:
-    url: http://{{ rpc_listen }}
+    url: http://{{ ws_listen }}
     method: "POST"
     body_format: json
     body: |
@@ -21,4 +21,4 @@
 
 
 #a check can be made by triggering:
-#curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "author_hasSessionKeys", "params":["key"]}' http://localhost:9933     
+#curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "author_hasSessionKeys", "params":["key"]}' http://localhost:9944  

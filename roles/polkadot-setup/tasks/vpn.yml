@@ -16,10 +16,5 @@
     enabled: yes
   changed_when: false
 
-# - name: stop service
-#   systemd:
-#     name: wg-quick@{{ vpn }}
-#     state: stopped
-#     enabled: no
-#   changed_when: false      
+# To sobstitute, manually remove the previous one with wg-quick down {{ vpn }}
 
