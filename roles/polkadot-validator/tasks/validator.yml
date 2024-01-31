@@ -37,7 +37,7 @@
                         "--public-addr=/ip4/{{ ansible_default_ipv4.address }}/tcp/{{ p2p_listen }}",
                         "--prometheus-external",
                         "--no-mdns",
-                        "--pruning=1000",
+                        "--state-pruning=256",
                         "--telemetry-url={{ telemetry_url }} 1"
                     ]
                 volumes:

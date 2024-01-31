@@ -1,3 +1,4 @@
 ---
 
-- include: watchtower.yaml
+- name: watchtower
+  import_tasks: watchtower.yaml  
