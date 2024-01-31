@@ -1,0 +1,27 @@
+
+---
+- name: Clean running nginx
+  docker_container:
+    name: 'nginx'
+    state: absent
+  ignore_errors: true
+
+- name: Spin up nginx
+  docker_container:
+    name: nginx
+    image: nginx:latest
+    network_mode: host
+    volumes:
+      - /etc/nginx/.htpasswd:/etc/nginx/.htpasswd
+      - /etc/nginx/sites-enabled/node-exporter.conf:/etc/nginx/sites-enabled/node-exporter.conf
+      - /etc/nginx/sites-enabled/polkadot-metrics.conf:/etc/nginx/sites-enabled/polkadot-metrics.conf
+      - /etc/nginx/nginx.conf:/etc/nginx/nginx.conf
+    restart_policy: unless-stopped
+  register: output
+
+- ansible.builtin.debug:
+    var: output
+
+- ansible.builtin.assert:
+    that:
+        - "output.container.State.Running"
