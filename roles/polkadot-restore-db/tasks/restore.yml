@@ -35,3 +35,5 @@
 - name: Print to start
   ansible.builtin.debug:
     msg: 'Please start your validator again!'
+
+# TODO replace it with https://snapshots.polkadot.io/
