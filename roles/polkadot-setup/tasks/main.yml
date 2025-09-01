@@ -13,7 +13,8 @@
   import_tasks: motd.yml
 
 - name: proxy setup
-  import_tasks: proxy.yml  
+  import_role: 
+    name: nginx-auth
 
 - name: user
   import_tasks: user.yml  

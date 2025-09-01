@@ -1,3 +1,4 @@
 ---
 
-- include: check.yml
+- name: check and eventually rotate
+  import_tasks: check.yml  

@@ -1,3 +1,4 @@
 ---
 
-- include: validator.yml
+- name: setup
+  import_tasks: validator.yml  
